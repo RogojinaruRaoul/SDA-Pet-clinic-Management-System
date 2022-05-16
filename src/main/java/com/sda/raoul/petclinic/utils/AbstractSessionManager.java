@@ -8,8 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.Properties;
 
-public abstract class AbstractSessionManager
-{
+public abstract class AbstractSessionManager {
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
     private static final String DATABASE_CURRENT_SESSION_CONTEXT_CLASS = "thread";
@@ -21,19 +20,18 @@ public abstract class AbstractSessionManager
 
     private static final String DATABASE_SHOW_SQL = "true";
 
-    private static final String DATABASE_HBM2DDL_AUTO = "create-drop";
-    //private static final String DATABASE_HBM2DDL_AUTO = "update";
+    //    cand avem o aplicatie stabila comentam asta
+//    private static final String DATABASE_HBM2DDL_AUTO = "create-drop";
+//    decomentam asta
+    private static final String DATABASE_HBM2DDL_AUTO = "update";
 
     private SessionFactory sessionFactory;
 
     protected abstract void setAnnotatedClasses(Configuration configuration);
 
-    protected SessionFactory getSessionFactory(String databaseName)
-    {
-        if (sessionFactory == null)
-        {
-            try
-            {
+    protected SessionFactory getSessionFactory(String databaseName) {
+        if (sessionFactory == null) {
+            try {
                 Configuration configuration = new Configuration();
 
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
@@ -60,19 +58,16 @@ public abstract class AbstractSessionManager
                                 .build();
 
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return sessionFactory;
     }
 
-    public void shutdownSessionManager()
-    {
+    public void shutdownSessionManager() {
         // Close caches and connection pools
-        if (sessionFactory != null)
-        {
+        if (sessionFactory != null) {
             sessionFactory.close();
         }
         sessionFactory = null;
