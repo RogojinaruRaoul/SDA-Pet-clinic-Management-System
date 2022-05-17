@@ -2,8 +2,10 @@ package com.sda.raoul.petclinic.controller;
 
 import com.sda.raoul.petclinic.service.VeterinarianService;
 import com.sda.raoul.petclinic.service.VeterinarianServiceImpl;
+import com.sda.raoul.petclinic.service.dto.VeterinarianDTO;
 import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class VeterinarianController {
@@ -31,9 +33,25 @@ public class VeterinarianController {
             System.out.println("The veterinarian " + firstName + " was created.");
         } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("The veterinarian was not created, internal server error.");
         }
+    }
+
+    public void showAllVeterinarians() {
+        List<VeterinarianDTO> vets = veterinarianService.findAll();
+        if (vets.isEmpty()) {
+            System.out.println("There are no vets!");
+            return;
+        }
+        vets.stream()
+                .forEach(veterinarianDTO ->
+                        System.out.println(
+                                "\n ID: " + veterinarianDTO.getId()
+                                        + "\n First Name: " + veterinarianDTO.getFirstName()
+                                        + "\n Last Name: " + veterinarianDTO.getLastName()
+                                        + "\n Address: " + veterinarianDTO.getAddress()
+                                        + "\n Speciality: " + veterinarianDTO.getSpeciality()));
     }
 
 
