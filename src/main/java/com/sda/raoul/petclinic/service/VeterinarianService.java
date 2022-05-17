@@ -12,4 +12,6 @@ public interface VeterinarianService {
     List<VeterinarianDTO> findAll();
 
     void deleteById(Long id);
+
+    void update(Long id, String firstName, String lastName, String address, String speciality) throws InvalidParameterException;
 }
