@@ -29,6 +29,9 @@ public class Main {
                 case ADD_NEW_VET:
                     veterinarianController.create();
                     break;
+                case SHOW_ALL:
+                    veterinarianController.showAllVeterinarians();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:
