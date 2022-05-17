@@ -54,5 +54,18 @@ public class VeterinarianController {
                                         + "\n Speciality: " + veterinarianDTO.getSpeciality()));
     }
 
+    public void deleteById(){
+        try {
+
+        System.out.println("Please insert the veterinarian's id.");
+        String idString = scanner.nextLine();
+        long idInt=Long.parseLong(idString);
+        veterinarianService.deleteById(idInt);
+        System.out.println("The vet was deleted!");
+        }catch (NumberFormatException e){
+            System.out.println("Invalid parameter inserted.");
+        }
+    }
+
 
 }

@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface VeterinarianService {
 
-    void create(String firstName,String lastName,String address, String speciality) throws InvalidParameterException;
+    void create(String firstName, String lastName, String address, String speciality) throws InvalidParameterException;
 
     List<VeterinarianDTO> findAll();
+
+    void deleteById(Long id);
 }

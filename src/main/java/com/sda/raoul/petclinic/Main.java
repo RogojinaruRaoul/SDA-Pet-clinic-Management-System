@@ -32,6 +32,9 @@ public class Main {
                 case SHOW_ALL:
                     veterinarianController.showAllVeterinarians();
                     break;
+                case DELETE_BY_ID:
+                    veterinarianController.deleteById();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:
