@@ -56,7 +56,6 @@ public class VeterinarianController {
 
     public void deleteById() {
         try {
-
             System.out.println("Please insert the veterinarian's id.");
             String idString = scanner.nextLine();
             long idInt = Long.parseLong(idString);

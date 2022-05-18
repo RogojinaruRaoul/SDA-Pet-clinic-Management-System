@@ -1,6 +1,7 @@
 package com.sda.raoul.petclinic.service;
 
 import com.sda.raoul.petclinic.model.Client;
+import com.sda.raoul.petclinic.model.Pet;
 import com.sda.raoul.petclinic.repository.ClientRepository;
 import com.sda.raoul.petclinic.repository.ClientRepositoryImpl;
 import com.sda.raoul.petclinic.repository.PetRepository;
@@ -41,6 +42,11 @@ public class PetServiceImpl implements PetService {
         if (clientResult.isEmpty()) {
             Client client = new Client(ownerFirstName, ownerLastName, null);
             clientRepository.create(client);
+            clientResult = Optional.of(client);
         }
+        Pet pet = new Pet(race, birthDate, isVaccinated);
+        pet.setOwner(clientResult.get());
+        petRepository.create(pet);
+
     }
 }
