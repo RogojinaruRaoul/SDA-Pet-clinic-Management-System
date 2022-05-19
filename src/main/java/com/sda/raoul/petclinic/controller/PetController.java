@@ -52,6 +52,16 @@ public class PetController {
         } catch (Exception e) {
             System.out.println("Internal server error.");
         }
+    }
 
+    public void showAllVaccinated() {
+        petService.findAllVaccinated().stream()
+                .forEach(pet -> System.out.println
+                        (
+                                "\nRace is: " + pet.getRace()
+                                        + "\nBirth date is: " + FORMATTER.format(pet.getBirthDate())
+                                        + "\nIs vaccinated: " + (pet.getVaccinated() ? "YES" : "NO")
+                        )
+                );
     }
 }

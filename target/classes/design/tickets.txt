@@ -35,9 +35,11 @@ PCMS-9
 As a user, I should be able to add a new consult.
 I should be able to specify: veterinarian_id, pet_id, date, description.
 
+Homework
 PCMS-10
 As a user, I should be able to view all the consults. I should be able to see for each consult: id, veterinarian_id, pet_id, date, description.
 
+Homework
 PCMS-11
 As a user, I should be able to update the description of a consult.
 
@@ -47,8 +49,23 @@ Define hibernate database mode.
 PCMS-13
 Create base repository classes.
 
-PCMS-13
-Create base repository classes.
+done
+PCMS-14
+As a user, I should be able to view all vaccinated pets.
 
+PCMS-15
+As a user, I should be able to view all the pets for a client id.
 
+PCMS-16
+As a user, I should be able to view all the consults with unvaccinated pets.
+
+PCMS-17
+As a user, I should be able to view all the clients with more than one pet.
+
+PCMS-18
+As a user, I should be able to view all the consults made by a vet in a specific period.
+I should be able to provide the vet id, start period inclusive and period exclusive.
+
+PCMS-19
+As a user, I should be able to filter vets by multiple parameters with the mention that every parameter is optional.
 
