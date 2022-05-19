@@ -35,4 +35,19 @@ public class ClientRepositoryImpl extends BaseRepositoryImpl<Client, Long> imple
             return Optional.empty();
         }
     }
+
+    @Override
+    public Optional<Client> findByIdAndLoadPets(Long id) {
+        try {
+            Session session = SessionManager.getSessionFactory().openSession();
+            Client client = session.find(Client.class, id);
+            System.out.println(client.getPets().size());
+
+            session.close();
+            return Optional.of(client);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+    }
 }
