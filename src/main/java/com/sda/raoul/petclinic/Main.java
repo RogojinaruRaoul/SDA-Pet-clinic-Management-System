@@ -44,7 +44,10 @@ public class Main {
                 case ADD_NEW_PET:
                     petController.addPet();
                     break;
-                case VIEW_ALL_VACCINATED:
+                case VIEW_ALL_VACCINATED_PETS:
+                    petController.showAllVaccinated();
+                    break;
+                case VIEW_ALL_PETS_FOR_CLIENT_ID:
                     petController.showAllVaccinated();
                     break;
                 case UNKNOWN:
