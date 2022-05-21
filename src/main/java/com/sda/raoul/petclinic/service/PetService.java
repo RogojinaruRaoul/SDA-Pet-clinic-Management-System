@@ -15,5 +15,8 @@ public interface PetService {
 
     List<PetDTO> findAll();
 
-    void deletebyId(Long id);
+    void deleteById(Long id);
+
+    void updateById(Long id, String race, Date birthDate, boolean isVaccinated,String ownerFirstName, String ownerLastName) throws InvalidParameterException;
+
 }

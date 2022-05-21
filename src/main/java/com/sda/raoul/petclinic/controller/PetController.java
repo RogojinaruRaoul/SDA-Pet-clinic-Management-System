@@ -76,7 +76,7 @@ public class PetController {
         pets.stream().forEach(petDTO ->
                 System.out.println("\n ID: " + petDTO.getId()
                         + "\n Race: " + petDTO.getRace()
-                        + "\n Date Of Birt: " + petDTO.getBirthDate()
+                        + "\n Date Of Birt: " + FORMATTER.format(petDTO.getBirthDate())
                         + "\n Is vaccinated: " + petDTO.getVaccinated()
                         + "\n Owner name: " + petDTO.getOwnerName()));
     }
@@ -86,10 +86,42 @@ public class PetController {
             System.out.println("Please insert a pet's id: ");
             String idString = scanner.nextLine();
             Long idLong = Long.parseLong(idString);
-            petService.deletebyId(idLong);
+            petService.deleteById(idLong);
             System.out.println("The pet with the id " + idLong + " was deleted.");
         } catch (Exception e) {
             System.out.println("Invalid parameters inserted.");
+        }
+    }
+
+    public void updateById() {
+        try {
+            System.out.println("Please insert the id:");
+            String idString = scanner.nextLine();
+            long id = Long.parseLong(idString);
+            System.out.println("Please insert race.");
+            String raceInput = scanner.nextLine();
+
+            System.out.println("Please insert date of birth.");
+            String dateInput = scanner.nextLine();
+            Date birthDate = FORMATTER.parse(dateInput);
+
+            System.out.println("Please insert true if the pet is vaccinated or false otherwise.");
+            boolean isVacccinatedState = Boolean.parseBoolean(scanner.nextLine());
+
+            System.out.println("Please insert the owner's first name.");
+            String firstName = scanner.nextLine();
+
+            System.out.println("Please insert the owner's last name.");
+            String lastName = scanner.nextLine();
+
+            petService.updateById(id, raceInput, birthDate, isVacccinatedState, firstName, lastName);
+            System.out.println("The pet "+raceInput+" was successfully updated.");
+        } catch (InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid parameter.");
+        } catch (Exception ex) {
+            System.out.println("The veterinarian was not updated, internal server error.");
         }
     }
 }

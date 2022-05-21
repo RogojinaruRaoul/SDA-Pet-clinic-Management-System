@@ -73,7 +73,41 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public void deletebyId(Long id) {
+    public void deleteById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateById(Long id, String race, Date birthDate, boolean isVaccinated, String ownerFirstName, String ownerLastName) throws InvalidParameterException {
+        if (race == null || race.isBlank()) {
+            throw new InvalidParameterException("The race is null or blank.");
+        }
+        if (birthDate == null) {
+            throw new InvalidParameterException("The birthDate is null.");
+        }
+        if (birthDate.after(new Date())) {
+            throw new InvalidParameterException("The birthDate is in future.");
+        }
+        if (ownerFirstName == null || ownerFirstName.isBlank()) {
+            throw new InvalidParameterException("The owner's first name is null or blank.");
+        }
+        if (ownerLastName == null || ownerLastName.isBlank()) {
+            throw new InvalidParameterException("The owner's last name is null or blank.");
+        }
+
+        Optional<Client> clientResult = clientRepository.findByFirstNameAndLastName(ownerFirstName, ownerLastName);
+        if (clientResult.isEmpty()) {
+            Client client = new Client(ownerFirstName, ownerLastName, null);
+            clientRepository.create(client);
+            clientResult = Optional.of(client);
+        }
+        Optional<Pet> pet = petRepository.findById(id);
+        if (pet.isPresent()) {
+            pet.get().setRace(race);
+            pet.get().setBirthDate(birthDate);
+            pet.get().setVaccinated(isVaccinated);
+            pet.get().setOwner(clientResult.get());
+            petRepository.update(pet.get());
+        }
     }
 }

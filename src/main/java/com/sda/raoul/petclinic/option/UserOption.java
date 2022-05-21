@@ -13,6 +13,7 @@ public enum UserOption {
     VIEW_ALL_PETS_FOR_CLIENT_ID("View pet for client id", 7),
     SHOW_ALL_PETS("Displays all pets", 8),
     DELETE_PET_BY_ID("Deletes a pet by id", 9),
+    UPDATE_PET_BY_ID("Updates a pet by id", 10),
     EXIT("Exit", 999),
     UNKNOWN("Unknown option, try again", 1000);
 
