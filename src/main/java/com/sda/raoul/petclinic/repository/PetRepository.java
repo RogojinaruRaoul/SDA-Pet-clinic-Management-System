@@ -8,4 +8,5 @@ import java.util.List;
 public interface PetRepository extends BaseRepository<Pet, Long> {
     List<Pet> findAllVaccinated();
 
+
 }

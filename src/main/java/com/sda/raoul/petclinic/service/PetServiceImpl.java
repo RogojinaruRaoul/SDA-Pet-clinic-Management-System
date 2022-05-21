@@ -6,11 +6,13 @@ import com.sda.raoul.petclinic.repository.ClientRepository;
 import com.sda.raoul.petclinic.repository.ClientRepositoryImpl;
 import com.sda.raoul.petclinic.repository.PetRepository;
 import com.sda.raoul.petclinic.repository.PetRepositoryImpl;
+import com.sda.raoul.petclinic.service.dto.PetDTO;
 import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
@@ -53,5 +55,20 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<Pet> findAllVaccinated() {
         return petRepository.findAllVaccinated();
+    }
+
+    @Override
+    public List<PetDTO> findAll() {
+        return petRepository.findAll()
+                .stream().map(pet -> new PetDTO
+                        (
+                                pet.getId(),
+                                pet.getRace(),
+                                pet.getBirthDate(),
+                                pet.getVaccinated(),
+                                pet.getOwner().getFirstName() + " "
+                                        + pet.getOwner().getLastName()
+
+                        )).collect(Collectors.toList());
     }
 }

@@ -16,7 +16,6 @@ public class Main {
         ClientController clientController = new ClientController();
         Scanner scanner = new Scanner(System.in);
 
-
         UserOption option = UserOption.UNKNOWN;
         do {
             UserOption.printAllOptions();
@@ -51,6 +50,9 @@ public class Main {
                     break;
                 case VIEW_ALL_PETS_FOR_CLIENT_ID:
                     clientController.viewAllPetsForClient();
+                    break;
+                case SHOW_ALL_PETS:
+                    petController.showAllPets();
                     break;
                 case UNKNOWN:
                     break;

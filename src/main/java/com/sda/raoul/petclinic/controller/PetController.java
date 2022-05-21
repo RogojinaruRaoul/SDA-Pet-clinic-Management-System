@@ -2,12 +2,14 @@ package com.sda.raoul.petclinic.controller;
 
 import com.sda.raoul.petclinic.service.PetService;
 import com.sda.raoul.petclinic.service.PetServiceImpl;
+import com.sda.raoul.petclinic.service.dto.PetDTO;
 import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class PetController {
@@ -63,5 +65,19 @@ public class PetController {
                                         + "\nIs vaccinated: " + (pet.getVaccinated() ? "YES" : "NO")
                         )
                 );
+    }
+
+    public void showAllPets() {
+        List<PetDTO> pets = petService.findAll();
+        if (pets.isEmpty()) {
+            System.out.println("There are no pets!");
+            return;
+        }
+        pets.stream().forEach(petDTO ->
+                System.out.println("\n ID: "+petDTO.getId()
+                +"\n Race: "+petDTO.getRace()
+                +"\n Date Of Birt: "+petDTO.getBirthDate()
+                +"\n Is vaccinated: "+petDTO.getVaccinated()
+                +"\n Owner name: "+petDTO.getOwnerName()));
     }
 }
