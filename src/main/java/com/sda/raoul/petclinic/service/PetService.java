@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface PetService {
 
-    void create(String race, Date birthDate, boolean isVaccinated, String ownerFirstName, String ownerLastName)throws InvalidParameterException;
+    void create(String race, Date birthDate, boolean isVaccinated, String ownerFirstName, String ownerLastName) throws InvalidParameterException;
 
     List<Pet> findAllVaccinated();
 
     List<PetDTO> findAll();
+
+    void deletebyId(Long id);
 }

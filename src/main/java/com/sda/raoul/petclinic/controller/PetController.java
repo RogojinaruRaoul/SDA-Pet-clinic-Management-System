@@ -74,10 +74,22 @@ public class PetController {
             return;
         }
         pets.stream().forEach(petDTO ->
-                System.out.println("\n ID: "+petDTO.getId()
-                +"\n Race: "+petDTO.getRace()
-                +"\n Date Of Birt: "+petDTO.getBirthDate()
-                +"\n Is vaccinated: "+petDTO.getVaccinated()
-                +"\n Owner name: "+petDTO.getOwnerName()));
+                System.out.println("\n ID: " + petDTO.getId()
+                        + "\n Race: " + petDTO.getRace()
+                        + "\n Date Of Birt: " + petDTO.getBirthDate()
+                        + "\n Is vaccinated: " + petDTO.getVaccinated()
+                        + "\n Owner name: " + petDTO.getOwnerName()));
+    }
+
+    public void deleteById() {
+        try {
+            System.out.println("Please insert a pet's id: ");
+            String idString = scanner.nextLine();
+            Long idLong = Long.parseLong(idString);
+            petService.deletebyId(idLong);
+            System.out.println("The pet with the id " + idLong + " was deleted.");
+        } catch (Exception e) {
+            System.out.println("Invalid parameters inserted.");
+        }
     }
 }
