@@ -65,6 +65,9 @@ public class Main {
                 case ADD_CONSULT:
                     consultController.addConsult();
                     break;
+                case VIEW_ALL_CONSULTS_WITH_UNVACCINATED_PETS:
+                    consultController.viewAllWithUnvaccinatedPets();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:

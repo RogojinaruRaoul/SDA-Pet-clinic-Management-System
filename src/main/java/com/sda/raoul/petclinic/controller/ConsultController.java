@@ -40,12 +40,19 @@ public class ConsultController {
             String descriptionInput = scanner.nextLine();
 
             consultService.create(vetId, petId, birthDate, descriptionInput);
-        }catch (InvalidParameterException e){
+        } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
         } catch (ParseException e) {
             System.out.println("Please insert a correct date " + DATE_FORMAT + ".");
         } catch (Exception e) {
             System.out.println("Internal server error.");
         }
+    }
+
+    public void viewAllWithUnvaccinatedPets() {
+        System.out.println("The consults that have unvaccinated pet's are: ");
+        consultService.findAllWithUnvaccinatedPets()
+                .stream().forEach(consult -> System.out.println("The date is: " + FORMATTER.format(consult.getDate()) +
+                " \n The vet is " + consult.getVeterinarian().getFirstName()));
     }
 }
