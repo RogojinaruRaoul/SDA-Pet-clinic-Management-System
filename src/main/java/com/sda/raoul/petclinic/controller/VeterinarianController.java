@@ -91,5 +91,28 @@ public class VeterinarianController {
         }
     }
 
+    public void viewByMultipleParameters() {
+        try {
+            System.out.println("Please insert first name:");
+            String firstName = scanner.nextLine();
+            System.out.println("Please insert last name:");
+            String lastName = scanner.nextLine();
+            System.out.println("Please insert the address:");
+            String address = scanner.nextLine();
+            System.out.println("Please insert the speciality:");
+            String speciality = scanner.nextLine();
+
+            veterinarianService.findByMultipleParameters(firstName, lastName, address, speciality)
+                    .stream()
+                    .forEach(veterinarian -> System.out.println("First name is " + veterinarian.getFirstName()
+                            + "\n The last name is " + veterinarian.getLastName()
+                            + "\n his address is " + veterinarian.getAddress()
+                            + "\n and has the speciality " + veterinarian.getSpeciality() + "."));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

@@ -71,6 +71,9 @@ public class Main {
                 case VIEW_CONSULT_BY_VET_ID_AND_DATE_INTERVAL:
                     consultController.viewAllByVetIdAndDateBetween();
                     break;
+                case VIEW_VET_WITH_MULTIPLE_PARAMETERS:
+                    veterinarianController.viewByMultipleParameters();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:

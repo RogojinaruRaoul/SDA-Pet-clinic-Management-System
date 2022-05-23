@@ -79,5 +79,10 @@ public class VeterinarianServiceImpl implements VeterinarianService {
         }
     }
 
+    @Override
+    public List<Veterinarian> findByMultipleParameters(String firstName, String lastName, String address, String speciality) {
+        return veterinarianRepository.findByMultipleParameters(firstName,lastName,address,speciality);
+    }
+
 
 }
