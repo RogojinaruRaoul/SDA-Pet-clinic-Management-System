@@ -4,6 +4,7 @@ import com.sda.raoul.petclinic.model.Consult;
 import com.sda.raoul.petclinic.model.Pet;
 import com.sda.raoul.petclinic.model.Veterinarian;
 import com.sda.raoul.petclinic.repository.*;
+import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
 
 import java.util.Date;
 import java.util.Optional;
@@ -21,40 +22,35 @@ public class ConsultServiceImpl implements ConsultService {
     }
 
     @Override
-    public void create(Long veterinarianId, Long petId, Date date, String description) {
-        if (veterinarianId.equals(null)) {
-            System.out.println("The veterinarian's id is null");
+    public void create(Long veterinarianId, Long petId, Date date, String description) throws InvalidParameterException {
+        if (veterinarianId == null) {
+            throw new InvalidParameterException("The veterinarian's id is null");
         }
-        if (petId.equals(null)) {
-            System.out.println("The pet's id is null");
+        if (petId == null) {
+            throw new InvalidParameterException("The pet's id is null");
         }
-        if (date.equals(new Date())) {
-            System.out.println("The consult's date is in the future.");
+        if (date == null) {
+            throw new InvalidParameterException("The date is null");
         }
-        if (description.equals(null) || description.isBlank()) {
-            System.out.println("The description is empty.");
+        if (description == null || description.isBlank()) {
+            throw new InvalidParameterException("The description is null or blank");
         }
 
         Optional<Veterinarian> veterinarianResult = veterinarianRepository.findById(veterinarianId);
         if (veterinarianResult.isEmpty()) {
-//            Veterinarian veterinarian = new Veterinarian();
-//            veterinarianRepository.create(veterinarian);
-//            veterinarianResult = Optional.of(veterinarian);
-            System.out.println("Please select an existing veterinarian id.");
-            return;
+            throw new InvalidParameterException("Invalid vet id");
         }
 
         Optional<Pet> petResult = petRepository.findById(petId);
         if (petResult.isEmpty()) {
-//            Pet pet = new Pet();
-//            petRepository.create(pet);
-//            petResult = Optional.of(pet);
-            System.out.println("Please select an existing pet id.");
-            return;
+            throw new InvalidParameterException("Invalid pet id");
         }
         Consult consult = new Consult(date, description);
         consult.setDate(date);
         consult.setDescription(description);
+
+        consult.setVeterinarian(veterinarianResult.get());
+        consult.setPet(petResult.get());
         consultRepository.create(consult);
 
     }

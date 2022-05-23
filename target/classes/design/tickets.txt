@@ -31,9 +31,10 @@ PCMS-8
 As a user, I should be able to update an existing pet by id.
 I should be able to update: race, birthdate, isVaccinated, ownerName.
 
+
 PCMS-9
 As a user, I should be able to add a new consult.
-I should be able to specify: veterinarian_id, pet_id, date, description.
+I should be able to specify:
 
 Homework
 PCMS-10
