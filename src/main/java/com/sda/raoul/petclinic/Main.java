@@ -1,6 +1,7 @@
 package com.sda.raoul.petclinic;
 
 import com.sda.raoul.petclinic.controller.ClientController;
+import com.sda.raoul.petclinic.controller.ConsultController;
 import com.sda.raoul.petclinic.controller.PetController;
 import com.sda.raoul.petclinic.controller.VeterinarianController;
 import com.sda.raoul.petclinic.option.UserOption;
@@ -14,6 +15,7 @@ public class Main {
         VeterinarianController veterinarianController = new VeterinarianController();
         PetController petController = new PetController();
         ClientController clientController = new ClientController();
+        ConsultController consultController = new ConsultController();
         Scanner scanner = new Scanner(System.in);
 
         UserOption option = UserOption.UNKNOWN;
@@ -59,6 +61,10 @@ public class Main {
                     break;
                 case UPDATE_PET_BY_ID:
                     petController.updateById();
+                    break;
+                case ADD_CONSULT:
+                    consultController.addConsult();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:

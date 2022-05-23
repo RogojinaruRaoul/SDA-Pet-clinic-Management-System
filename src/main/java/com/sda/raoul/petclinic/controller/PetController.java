@@ -98,6 +98,7 @@ public class PetController {
             System.out.println("Please insert the id:");
             String idString = scanner.nextLine();
             long id = Long.parseLong(idString);
+
             System.out.println("Please insert race.");
             String raceInput = scanner.nextLine();
 
