@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface ConsultService {
 
-    void create(Long veterinarianId,Long petId,Date date, String description)throws InvalidParameterException;
+    void create(Long veterinarianId, Long petId, Date date, String description) throws InvalidParameterException;
 
     List<Consult> findAllWithUnvaccinatedPets();
+
+    List<Consult> findAllByVetIdAndDateBetween(Long vetID, Date startDate, Date endDate) throws InvalidParameterException;
 
 }

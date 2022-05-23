@@ -1,5 +1,6 @@
 package com.sda.raoul.petclinic.controller;
 
+import com.sda.raoul.petclinic.model.Consult;
 import com.sda.raoul.petclinic.service.ConsultService;
 import com.sda.raoul.petclinic.service.ConsultServiceImpl;
 import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
@@ -7,6 +8,7 @@ import com.sda.raoul.petclinic.service.exception.InvalidParameterException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsultController {
@@ -54,5 +56,32 @@ public class ConsultController {
         consultService.findAllWithUnvaccinatedPets()
                 .stream().forEach(consult -> System.out.println("The date is: " + FORMATTER.format(consult.getDate()) +
                 " \n The vet is " + consult.getVeterinarian().getFirstName()));
+    }
+
+    public void viewAllByVetIdAndDateBetween() {
+        try {
+            System.out.println("Please insert vet id.");
+            String idInput = scanner.nextLine();
+            Long id = Long.parseLong(idInput);
+
+            System.out.println("Please insert the start date");
+            String startInput = scanner.nextLine();
+            Date startDate = FORMATTER.parse(startInput);
+
+            System.out.println("Please insert the end date");
+            String endInput = scanner.nextLine();
+            Date endDate = FORMATTER.parse(endInput);
+
+            List<Consult> consults = consultService.findAllByVetIdAndDateBetween(id, startDate, endDate);
+            consults.stream().forEach(consult ->
+                    System.out.println("The consult date is " + FORMATTER.format(consult.getDate()))
+            );
+        } catch (InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("Invalid date inserted.");
+        } catch (Exception e) {
+            System.out.println("Server error.");
+        }
     }
 }

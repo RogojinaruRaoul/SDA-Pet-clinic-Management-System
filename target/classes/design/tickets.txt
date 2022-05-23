@@ -44,9 +44,11 @@ Homework
 PCMS-11
 As a user, I should be able to update the description of a consult.
 
+done
 PCMS-12
 Define hibernate database mode.
 
+done
 PCMS-13
 Create base repository classes.
 
@@ -54,9 +56,11 @@ done
 PCMS-14
 As a user, I should be able to view all vaccinated pets.
 
+done
 PCMS-15
 As a user, I should be able to view all the pets for a client id.
 
+done
 PCMS-16
 As a user, I should be able to view all the consults with unvaccinated pets.
 

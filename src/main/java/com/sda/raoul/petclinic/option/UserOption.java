@@ -16,6 +16,7 @@ public enum UserOption {
     UPDATE_PET_BY_ID("Updates a pet by id", 10),
     ADD_CONSULT("Adds a new consult.", 11),
     VIEW_ALL_CONSULTS_WITH_UNVACCINATED_PETS("Shows all consults with unvaccinated pets", 12),
+    VIEW_CONSULT_BY_VET_ID_AND_DATE_INTERVAL("Shows consults by vet id and date interval", 13),
     EXIT("Exit", 999),
     UNKNOWN("Unknown option, try again", 1000);
 

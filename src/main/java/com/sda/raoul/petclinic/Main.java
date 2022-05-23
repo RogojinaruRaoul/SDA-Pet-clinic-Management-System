@@ -68,6 +68,9 @@ public class Main {
                 case VIEW_ALL_CONSULTS_WITH_UNVACCINATED_PETS:
                     consultController.viewAllWithUnvaccinatedPets();
                     break;
+                case VIEW_CONSULT_BY_VET_ID_AND_DATE_INTERVAL:
+                    consultController.viewAllByVetIdAndDateBetween();
+                    break;
                 case UNKNOWN:
                     break;
                 case EXIT:
